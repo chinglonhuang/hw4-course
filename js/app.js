@@ -72,12 +72,13 @@ var loadPagesInfo = function(pages){
           $page.find('.thumbnail img').attr('src',response.data.url)
           
           %page.appendTo(current);
-        
+        }
         // 塞資料到 html 中
         counter++;
         // 塞完資料以後處理一下斷行
         if(counter===pages.length){
           // 利用 .current div:nth-child(3n)，讓每三個page 斷行
+          $('.current div:nth_child(3n').after('<div class="clearfix"></div>')
           current.children('div').unwrap();
         }
       });
