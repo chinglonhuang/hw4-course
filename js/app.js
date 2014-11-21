@@ -10,7 +10,7 @@ var $listRoot = $('.page-list');
 // 設定 Facebook AppID
 window.fbAsyncInit = function() {
     FB.init({
-        appId: '811102368936764', // 若可以，請換成自己的 App ID !
+        appId: '551203624979793', // 若可以，請換成自己的 App ID !
         xfbml: true,
         version: 'v2.2'
     });
@@ -30,6 +30,7 @@ window.fbAsyncInit = function() {
               $('#user').removeClass('hide');
               // ---------------
               // 讀取 like 的列表，並儲存到 likes, 以及下一組資料的連結到 next
+              var likes = response.likes.data;
 
               //把讀到的資料放進html
               loadPagesInfo(likes);
@@ -64,6 +65,14 @@ var loadPagesInfo = function(pages){
     FB.api(item.id, function(response){
       // 塞 name, about, like 數到 html 裡。
       FB.api(/*輸入圖片連結*/, function(response){
+        $page.find('title a').text(response.name).attr('href',link);
+        $page.find('.about').text(response.about);
+        $page.find('likes').text(response.likes);
+        FB.api(item.id+'picture?type=large')function(response){
+          $page.find('.thumbnail img').attr('src',response.data.url)
+          
+          %page.appendTo(current);
+        
         // 塞資料到 html 中
         counter++;
         // 塞完資料以後處理一下斷行
